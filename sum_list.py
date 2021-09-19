@@ -1,3 +1,6 @@
+import itertools
+
+
 def calculate_list(numbers_list=None, soma_alvo=10):
     """
     Usei coisa básicas, acho que existem soluções bem melhores, especialmente em functools
@@ -25,4 +28,16 @@ def calculate_list(numbers_list=None, soma_alvo=10):
                 cur_list = sorted(cur_list)
                 results.append(cur_list)
 
+    return results
+
+
+def combinations(numbers_list=None, soma_alvo=10):
+    results = []
+    combined = itertools.combinations(numbers_list, 2)
+    my_list = [c for c in combined]
+    for tup in my_list:
+        if tup[0] == tup[1]:
+            continue
+        if sum(tup) == soma_alvo and list(tup) not in results:
+            results.append(sorted(tup))
     return results

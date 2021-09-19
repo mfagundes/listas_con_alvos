@@ -1,6 +1,6 @@
 import pytest
 
-from sum_list import calculate_list
+from sum_list import calculate_list, combinations
 
 """
 Escreva uma função que recebe um array nao vazio de inteiros distintos e um inteiro representando uma soma alvo. 
@@ -24,9 +24,21 @@ Exemplo de saida
         ([1, 2, 3, 8, 7], 10, [[2, 8], [3, 7]]),
         ([1, 2, 3, 9], 5, [[2, 3]]),
         ([1, 3, 6, 14], 20, [[6, 14]]),
-        ([1, 4, -5, 12, -8, -2], 10, [[-2, 12]]),
+        ([1, 4, 1, -5, 12, -8, -2], 10, [[-2, 12]]),
 ))
 def test_list_sum(numbers_list, soma_alvo, result):
     res = calculate_list(numbers_list, soma_alvo)
     assert res == result
 
+
+@pytest.mark.parametrize('numbers_list, soma_alvo, result', (
+        ([], 8, []),
+        ([1, 2], 4, []),
+        ([1, 2, 3, 8, 7], 10, [[2, 8], [3, 7]]),
+        ([1, 2, 3, 9], 5, [[2, 3]]),
+        ([1, 3, 6, 14], 20, [[6, 14]]),
+        ([1, 4, 1, -5, 12, -8, -2], 10, [[-2, 12]]),
+))
+def test_combinations(numbers_list, soma_alvo, result):
+    res = combinations(numbers_list, soma_alvo)
+    assert res == result
